@@ -1,0 +1,7 @@
+beb a = 100
+beb b = 50
+beb v = a + b
+beb g = v * b
+
+bebra(v)
+bebra(g)
