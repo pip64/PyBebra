@@ -131,12 +131,12 @@ KEYWORDS = [
   'bif',
   'belif',
   'belse',
-  'for',
+  'lopt',
   'to',
   'step',
   'bebhile',
   'bfunc',
-  'bthen',
+  'thenb',
   'bend',
   'breturn',
   'contin',
@@ -640,7 +640,7 @@ class Parser:
     if res.error:
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        "Expected 'breturn', 'contin', 'bbreak', 'beb', 'bif', 'for', 'bebhile', 'bfunc', int, float, identifier, '+', '-', '(', '[' or 'not'"
+        "Expected 'breturn', 'contin', 'bbreak', 'beb', 'bif', 'lopt', 'bebhile', 'bfunc', int, float, identifier, '+', '-', '(', '[' or 'not'"
       ))
     return res.success(expr)
 
@@ -678,7 +678,7 @@ class Parser:
     if res.error:
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        "Expected 'beb', 'bif', 'for', 'bebhile', 'bfunc', int, float, identifier, '+', '-', '(', '[' or 'not'"
+        "Expected 'beb', 'bif', 'lopt', 'bebhile', 'bfunc', int, float, identifier, '+', '-', '(', '[' or 'not'"
       ))
 
     return res.success(node)
@@ -700,7 +700,7 @@ class Parser:
     if res.error:
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        "Expected int, float, identifier, '+', '-', '(', '[', 'bif', 'for', 'bebhile', 'bfunc' or 'not'"
+        "Expected int, float, identifier, '+', '-', '(', '[', 'bif', 'lopt', 'bebhile', 'bfunc' or 'not'"
       ))
 
     return res.success(node)
@@ -745,7 +745,7 @@ class Parser:
         if res.error:
           return res.failure(InvalidSyntaxError(
             self.current_tok.pos_start, self.current_tok.pos_end,
-            "Expected ')', 'beb', 'bif', 'for', 'bebhile', 'bfunc', int, float, identifier, '+', '-', '(', '[' or 'not'"
+            "Expected ')', 'beb', 'bif', 'lopt', 'bebhile', 'bfunc', int, float, identifier, '+', '-', '(', '[' or 'not'"
           ))
 
         while self.current_tok.type == TT_COMMA:
@@ -810,7 +810,7 @@ class Parser:
       if res.error: return res
       return res.success(if_expr)
 
-    elif tok.matches(TT_KEYWORD, 'for'):
+    elif tok.matches(TT_KEYWORD, 'lopt'):
       for_expr = res.register(self.for_expr())
       if res.error: return res
       return res.success(for_expr)
@@ -827,7 +827,7 @@ class Parser:
 
     return res.failure(InvalidSyntaxError(
       tok.pos_start, tok.pos_end,
-      "Expected int, float, identifier, '+', '-', '(', '[', bif', 'for', 'bebhile', 'bfunc'"
+      "Expected int, float, identifier, '+', '-', '(', '[', bif', 'lopt', 'bebhile', 'bfunc'"
     ))
 
   def list_expr(self):
@@ -852,7 +852,7 @@ class Parser:
       if res.error:
         return res.failure(InvalidSyntaxError(
           self.current_tok.pos_start, self.current_tok.pos_end,
-          "Expected ']', 'beb', 'bif', 'for', 'bebhile', 'bfunc', int, float, identifier, '+', '-', '(', '[' or 'not'"
+          "Expected ']', 'beb', 'bif', 'lopt', 'bebhile', 'bfunc', int, float, identifier, '+', '-', '(', '[' or 'not'"
         ))
 
       while self.current_tok.type == TT_COMMA:
@@ -949,10 +949,10 @@ class Parser:
     condition = res.register(self.expr())
     if res.error: return res
 
-    if not self.current_tok.matches(TT_KEYWORD, 'bthen'):
+    if not self.current_tok.matches(TT_KEYWORD, 'thenb'):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'bthen'"
+        f"Expected 'thenb'"
       ))
 
     res.register_advancement()
@@ -989,10 +989,10 @@ class Parser:
   def for_expr(self):
     res = ParseResult()
 
-    if not self.current_tok.matches(TT_KEYWORD, 'for'):
+    if not self.current_tok.matches(TT_KEYWORD, 'lopt'):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'for'"
+        f"Expected 'lopt'"
       ))
 
     res.register_advancement()
@@ -1041,10 +1041,10 @@ class Parser:
     else:
       step_value = None
 
-    if not self.current_tok.matches(TT_KEYWORD, 'bthen'):
+    if not self.current_tok.matches(TT_KEYWORD, 'thenb'):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'bthen'"
+        f"Expected 'thenb'"
       ))
 
     res.register_advancement()
@@ -1088,10 +1088,10 @@ class Parser:
     condition = res.register(self.expr())
     if res.error: return res
 
-    if not self.current_tok.matches(TT_KEYWORD, 'then'):
+    if not self.current_tok.matches(TT_KEYWORD, 'thenb'):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'bthen'"
+        f"Expected 'thenb'"
       ))
 
     res.register_advancement()
@@ -2179,7 +2179,7 @@ global_symbol_table.set("append", BuiltInFunction.append)
 global_symbol_table.set("pop", BuiltInFunction.pop)
 global_symbol_table.set("extend", BuiltInFunction.extend)
 global_symbol_table.set("len", BuiltInFunction.len)
-global_symbol_table.set("run", BuiltInFunction.run)
+global_symbol_table.set("lopata", BuiltInFunction.run)
 
 def run(fn, text):
   # Generate tokens
