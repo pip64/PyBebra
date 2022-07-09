@@ -1041,10 +1041,10 @@ class Parser:
     else:
       step_value = None
 
-    if not self.current_tok.matches(TT_KEYWORD, 'then'):
+    if not self.current_tok.matches(TT_KEYWORD, 'bthen'):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'then'"
+        f"Expected 'bthen'"
       ))
 
     res.register_advancement()
@@ -1091,7 +1091,7 @@ class Parser:
     if not self.current_tok.matches(TT_KEYWORD, 'then'):
       return res.failure(InvalidSyntaxError(
         self.current_tok.pos_start, self.current_tok.pos_end,
-        f"Expected 'then'"
+        f"Expected 'bthen'"
       ))
 
     res.register_advancement()
