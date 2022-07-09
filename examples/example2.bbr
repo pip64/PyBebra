@@ -1,0 +1,5 @@
+bfunc bobr(a) -> a + "бебру!"
+lopt i = 0 to 5 thenb
+  bebra(bobr("Нюхай "))
+bend
+bebra("Сверху была беброфункция и лопатный цикл :)")
