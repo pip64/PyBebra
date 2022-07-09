@@ -1,3 +1,3 @@
 lopt i = 0 to 5 thenb
-    bebra("Привет")
+    bebra("Привет.")
 bend
