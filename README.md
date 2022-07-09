@@ -12,14 +12,14 @@ bebra("Привет Бебромир!")
 
 ```py
 python shell.py
-> run("test.bbr")
+> lopata("test.bbr")
 ```
 
 # Беброчная документация
 
 **Главное**
 
-`python shell.py` открывает консоль. Команда запуска `run("test.bbr")`
+`python shell.py` открывает консоль. Команда запуска `lopata("test.bbr")`
 
 **Переменные**
 
@@ -48,7 +48,7 @@ bebra(g)
 ```py
 beb a = 100
 
-bif a == 100 bthen bebra("a = 100") belse bebra("a не = 100")
+bif a == 100 thenb bebra("a = 100") belse bebra("a не = 100")
 ```
 
 Вывод:
@@ -59,7 +59,7 @@ bif a == 100 bthen bebra("a = 100") belse bebra("a не = 100")
 **Циклы**
 
 ```py
-for i = 0 to 5 bthen
+lopt i = 0 to 5 thenb
     bebra("привет")
 bend
 ```
