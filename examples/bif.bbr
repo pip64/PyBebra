@@ -3,11 +3,11 @@ beb goodbye = 50
 
 bebra(hello)
 
-bif hello == 1 bthen bebra("hello = 1") belse bebra("hello > 1")
-bif hello == 100 bthen beb a = hello + 100 belse bebra("hello /= 100")
-bif goodbye == 50 bthen beb b = hello + goodbye belse bebra("goodbye /= 50")
+bif hello == 1 thenb bebra("hello = 1") belse bebra("hello > 1")
+bif hello == 100 thenb beb a = hello + 100 belse bebra("hello /= 100")
+bif goodbye == 50 thenb beb b = hello + goodbye belse bebra("goodbye /= 50")
 
 bebra(b)
 
-bif a >= 200 bthen bebra("Hello!")
-bif b >= 150 bthen bebra("Goodbye!")
+bif a >= 200 thenb bebra("Hello!")
+bif b >= 150 thenb bebra("Goodbye!")
